@@ -32,7 +32,7 @@ function Home() {
 
   const navigate = useNavigate();
 
-  // Canada only search
+  // Canada only search   
   const searchCanada = async (
     query: string,
     setResults: React.Dispatch<React.SetStateAction<LocationResult[]>>
