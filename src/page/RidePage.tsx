@@ -6,6 +6,7 @@ import { map_token } from "../global/env";
 import { useCreateRideRequest } from "@/api/ride-api";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
+import { useWaiting } from "@/context/WaitingContext";
 
 mapboxgl.accessToken = map_token;
 
@@ -13,6 +14,8 @@ function RidePage() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const { user } = useAuth();
+
+  const { updateShow } = useWaiting();
 
   const pickupMarker = useRef<mapboxgl.Marker | null>(null);
   const dropoffMarker = useRef<mapboxgl.Marker | null>(null);
@@ -220,6 +223,7 @@ function RidePage() {
 
   const handleRequestRide = () => {
     if (tripInfo.dropoff_coords_lat_lng && tripInfo.pickup_coords_lat_lng) {
+      updateShow(true);
       mutate({
         dropoff_location: tripInfo.dropoff_location,
         estimated_distance_km: tripInfo.distance,

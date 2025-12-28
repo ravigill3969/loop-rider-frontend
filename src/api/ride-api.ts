@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export function useCreateRideRequest() {
   const createRideRequest = async (
-    data: CreateCheckoutSessionRequest
+    data: CreateCheckoutSessionRequest,
   ): Promise<CreateCheckOutSessionResponse> => {
     console.log(data);
     const response = await fetch(
@@ -19,7 +19,7 @@ export function useCreateRideRequest() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }
+      },
     );
 
     const res = await response.json();

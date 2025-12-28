@@ -9,7 +9,8 @@ import { AuthProvider } from "./context/AuthContext";
 import { Navigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
-import WaitingPage from "./page/WaitingPage";
+import { WebSocketConextProvider } from "./context/WebSocketContext";
+import { WaitingContextProvider } from "./context/WaitingContext";
 
 const queryClient = new QueryClient();
 
@@ -18,35 +19,46 @@ function App() {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <Routes>
-            <Route path="/login" element={<Login />} />
+          <WebSocketConextProvider>
+            <WaitingContextProvider>
+              <Routes>
+                <Route path="/login" element={<Login />} />
 
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/ride"
-              element={
-                <ProtectedRoute>
-                  <RidePage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/waiting" element={<WaitingPage />} />
-          </Routes>
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <Home />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/ride"
+                  element={
+                    <ProtectedRoute>
+                      <RidePage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/close-tab"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </WaitingContextProvider>
+          </WebSocketConextProvider>
         </AuthProvider>
       </QueryClientProvider>
     </BrowserRouter>
