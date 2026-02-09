@@ -13,11 +13,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Profile from "./page/Profile";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuth } from "@/context/AuthContext";
-<<<<<<< HEAD
-import { useEffect, useState } from "react";
-import { WebSocketConextProvider } from "./context/WebSocketContext";
-import { WaitingContextProvider } from "./context/WaitingContext";
-=======
 import { useEffect, useRef, useState } from "react";
 import OnRide from "./page/OnRoute";
 import { WebSocketConextProvider } from "./context/WebSocketContext";
@@ -27,7 +22,6 @@ import {
   useGetActiveRideRequest,
   useGetActiveRideRequestWithID,
 } from "@/api/ride-api";
->>>>>>> 825d577 (ready to go)
 
 const queryClient = new QueryClient();
 
@@ -53,11 +47,7 @@ function App() {
                   path="/ride"
                   element={
                     <ProtectedRoute>
-<<<<<<< HEAD
-                      <RidePage />
-=======
                       <RideRequest />
->>>>>>> 825d577 (ready to go)
                     </ProtectedRoute>
                   }
                 />
@@ -70,17 +60,10 @@ function App() {
                   }
                 />
                 <Route
-<<<<<<< HEAD
-                  path="/close-tab"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-=======
                   path="/on-ride"
                   element={
                     <ProtectedRoute>
                       <OnRide />
->>>>>>> 825d577 (ready to go)
                     </ProtectedRoute>
                   }
                 />

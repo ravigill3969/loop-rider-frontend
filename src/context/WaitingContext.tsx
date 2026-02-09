@@ -17,11 +17,6 @@ export function WaitingContextProvider({
   const [open, setOpen] = useState(false);
   const { connected, receivedText } = useWebsocket();
 
-<<<<<<< HEAD
-=======
-  console.log(receivedText);
-
->>>>>>> 825d577 (ready to go)
   function updateShow(val: boolean) {
     setOpen(val);
   }
@@ -31,16 +26,12 @@ export function WaitingContextProvider({
       {children}
 
       {open && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 shadow-xl flex flex-col items-center gap-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-8 shadow-xl">
             <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
-<<<<<<< HEAD
-            <p className="text-lg font-medium text-gray-900">{ connected == false  ? "trying to connect" : receivedText}</p>
-=======
             <p className="text-lg font-medium text-gray-900">
-              {connected == false ? "trying to connect" : receivedText}
+              {connected === false ? "trying to connect" : receivedText}
             </p>
->>>>>>> 825d577 (ready to go)
           </div>
         </div>
       )}
@@ -48,10 +39,7 @@ export function WaitingContextProvider({
   );
 }
 
-<<<<<<< HEAD
-=======
 // eslint-disable-next-line react-refresh/only-export-components
->>>>>>> 825d577 (ready to go)
 export function useWaiting() {
   const ctx = useContext(WaitingContext);
   if (!ctx) {
