@@ -11,12 +11,6 @@ interface WebSocketConextT {
   connected: boolean;
   send: (data: unknown) => void;
   receivedText: string;
-<<<<<<< HEAD
-}
-
-interface TripRequestDataI {
-  type: string;
-=======
   tripStatus: TripRequestDataI | null;
   driverLocationUpdate: DriverLocationUpdateI | null;
   clearTripStatus: () => void;
@@ -24,13 +18,10 @@ interface TripRequestDataI {
 
 interface TripRequestDataI {
   type: "TRIP_STATUS";
->>>>>>> 825d577 (ready to go)
   status: number;
   message: string;
 }
 
-<<<<<<< HEAD
-=======
 interface DriverLocationUpdateI {
   type: "DRIVER_LOCATION_UPDATE";
   trip_id: string;
@@ -46,7 +37,6 @@ interface DriverLocationUpdateI {
   driver_car_color: string;
 }
 
->>>>>>> 825d577 (ready to go)
 const WebSocketContext = createContext<WebSocketConextT | null>(null);
 
 export const WebSocketConextProvider = ({
@@ -57,29 +47,24 @@ export const WebSocketConextProvider = ({
   const wsRef = useRef<WebSocket | null>(null);
   const [connected, setConnected] = useState(false);
   const [receivedText, setReceivedText] = useState("Loading");
-<<<<<<< HEAD
-=======
   const [tripStatus, setTripStatus] = useState<TripRequestDataI | null>(null);
   const [driverLocationUpdate, setDriverLocationUpdate] =
     useState<DriverLocationUpdateI | null>(null);
->>>>>>> 825d577 (ready to go)
 
   const { user } = useAuth();
 
   useEffect(() => {
     if (!user?.id) return;
 
-    const ws = new WebSocket(`ws://localhost:8081/ws?rider_id=${user?.id}`);
+    const ws = new WebSocket(`ws://localhost:8081/ws?rider_id=${user.id}`);
 
     wsRef.current = ws;
 
     ws.onopen = () => {
-      console.log("WS connected");
       setConnected(true);
     };
 
     ws.onclose = () => {
-      console.log("WS disconnected");
       setConnected(false);
     };
 
@@ -89,19 +74,10 @@ export const WebSocketConextProvider = ({
 
     ws.onmessage = (event) => {
       try {
-<<<<<<< HEAD
-        const data = JSON.parse(event.data) as TripRequestDataI;
-
-        if (data.type === "PAYMENT") {
-          setReceivedText(data.message);
-=======
         const data = JSON.parse(event.data) as
           | TripRequestDataI
           | DriverLocationUpdateI;
-        console.log(data);
-        // if (data.type === "PAYMENT") {
-        //   setReceivedText(data.message);
-        // }
+
         if (data.type === "TRIP_STATUS") {
           setReceivedText(data.message);
           setTripStatus(data);
@@ -109,16 +85,17 @@ export const WebSocketConextProvider = ({
           if (data.status === 200 && data.message === "trip completed") {
             window.location.replace("/");
           }
+          return;
         }
 
         if (data.type === "DRIVER_LOCATION_UPDATE") {
           setDriverLocationUpdate(data);
->>>>>>> 825d577 (ready to go)
         }
       } catch (err) {
         console.error("Invalid WS payload", err);
       }
     };
+
     return () => {
       ws.close();
       wsRef.current = null;
@@ -132,10 +109,6 @@ export const WebSocketConextProvider = ({
     }
   };
 
-<<<<<<< HEAD
-  return (
-    <WebSocketContext.Provider value={{ connected, send, receivedText }}>
-=======
   const clearTripStatus = () => {
     setTripStatus(null);
   };
@@ -151,16 +124,12 @@ export const WebSocketConextProvider = ({
         clearTripStatus,
       }}
     >
->>>>>>> 825d577 (ready to go)
       {children}
     </WebSocketContext.Provider>
   );
 };
 
-<<<<<<< HEAD
-=======
 // eslint-disable-next-line react-refresh/only-export-components
->>>>>>> 825d577 (ready to go)
 export function useWebsocket() {
   const ctx = useContext(WebSocketContext);
 
