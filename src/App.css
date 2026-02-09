@@ -156,3 +156,84 @@
     @apply bg-background text-foreground;
   }
 }
+
+.active-ride-fab {
+  position: fixed;
+  z-index: 50;
+  width: 88px;
+  height: 88px;
+  border-radius: 9999px;
+  background: #0b0b0b;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.15;
+  cursor: grab;
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+.active-ride-fab:active {
+  cursor: grabbing;
+}
+
+.active-ride-wave {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  animation: activeRidePulse 2.6s ease-out infinite;
+  pointer-events: none;
+}
+
+.active-ride-wave-delay {
+  animation-delay: 1.3s;
+}
+
+.active-ride-label {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes activeRidePulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+.car-marker {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.25),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.car-marker svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}

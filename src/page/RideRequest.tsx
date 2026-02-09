@@ -10,7 +10,7 @@ import { useWaiting } from "@/context/WaitingContext";
 
 mapboxgl.accessToken = map_token;
 
-function RidePage() {
+function RideRequest() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const { user } = useAuth();
@@ -327,4 +327,4 @@ function RidePage() {
   );
 }
 
-export default RidePage;
+export default RideRequest;
