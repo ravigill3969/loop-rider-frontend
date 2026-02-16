@@ -62,7 +62,6 @@ export const WebSocketConextProvider = ({
 
     wsRef.current = ws;
 
-    
     ws.onopen = () => {
       setConnected(true);
     };
@@ -99,6 +98,7 @@ export const WebSocketConextProvider = ({
       }
     };
 
+    //trying to fix
     return () => {
       ws.close();
       wsRef.current = null;

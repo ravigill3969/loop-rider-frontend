@@ -283,7 +283,7 @@ export default function OnRoute() {
     }, 250);
   }, [drawRoute]);
 
-  // 🗺️ Initialize map ONCE
+  // -trying to fix for cloulflare coent
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current || !activeTripId) return;
     const trip = activeTripRef.current;
@@ -395,7 +395,7 @@ export default function OnRoute() {
         driver_id: activeTrip.driver_id ?? "",
         reason: cancelReason,
       });
-      const isSuccess = res?.status  === true;
+      const isSuccess = res?.status === true;
       if (isSuccess) {
         window.location.assign("/");
         return;
@@ -519,6 +519,7 @@ export default function OnRoute() {
           </div>
         </div>
       )}
+      <div></div>
     </div>
   );
 }
