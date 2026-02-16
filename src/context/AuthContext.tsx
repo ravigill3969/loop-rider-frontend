@@ -6,7 +6,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useGetRiderInfo } from "@/api/auth-api";
 import { backend_domain } from "@/global/env";
 
@@ -35,6 +35,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Fetch user info
   const { data, isLoading, refetch, isError, isFetching } = useGetRiderInfo();
@@ -50,9 +51,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (isError && !isLoading) {
       setUser(null);
-      navigate("/login");
+      const isPublicRoute =
+        location.pathname === "/login" || location.pathname === "/register";
+      if (!isPublicRoute) {
+        navigate("/login");
+      }
     }
-  }, [isError, isLoading, navigate]);
+  }, [isError, isLoading, location.pathname, navigate]);
 
   const updateUser = (userData: Partial<User>) => {
     setUser((prev) => (prev ? { ...prev, ...userData } : (userData as User)));

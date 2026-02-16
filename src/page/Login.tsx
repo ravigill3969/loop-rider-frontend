@@ -199,7 +199,10 @@ export default function LoginUI() {
         {/* Sign Up Link */}
         <p className="text-center text-sm text-slate-600 mt-6">
           Don't have an account?{" "}
-          <button className="font-medium text-blue-600 hover:text-blue-700 transition-colors">
+          <button
+            onClick={() => navigate("/register")}
+            className="font-medium text-blue-600 hover:text-blue-700 transition-colors"
+          >
             Sign up for free
           </button>
         </p>

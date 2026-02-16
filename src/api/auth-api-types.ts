@@ -16,3 +16,12 @@ export interface User {
   updated_at: number; // Unix timestamp
   created_at: number; // Unix timestamp
 }
+
+export type RegisterRequestT = {
+  email: string;
+  full_name: string;
+  password: string;
+  phone_number: string;
+  birth_month: string;
+  birth_year: number;
+};

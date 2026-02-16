@@ -9,6 +9,7 @@ import {
 import Login from "./page/Login";
 import "./App.css";
 import Home from "./page/Home";
+import Register from "./page/Register";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Profile from "./page/Profile";
 import { AuthProvider } from "./context/AuthContext";
@@ -34,6 +35,7 @@ function App() {
             <WaitingContextProvider>
               <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
 
                 <Route
                   path="/"

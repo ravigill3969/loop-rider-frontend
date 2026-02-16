@@ -1,6 +1,6 @@
 import { backend_domain } from "@/global/env";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import type { UserResponse } from "./auth-api-types";
+import type { RegisterRequestT, UserResponse } from "./auth-api-types";
 
 export function useLogin() {
   const login = async ({
@@ -61,4 +61,32 @@ export function useGetRiderInfo() {
   });
 
   return query;
+}
+
+export function useRegister() {
+  const register = async (data: RegisterRequestT): Promise<string> => {
+    const response = await fetch(`${backend_domain}/api/auth/register`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const res = await response.json();
+
+    if (!response.ok) {
+      throw new Error("Internal server error");
+    }
+
+    return res;
+  };
+
+  const mutate = useMutation({
+    mutationFn: register,
+    mutationKey: ["register"],
+  });
+
+  return mutate;
 }
