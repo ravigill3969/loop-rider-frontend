@@ -128,7 +128,7 @@ export default function OnRoute() {
   }, [activeTrip, navigate]);
 
   useEffect(() => {
-    carColorRef.current = carColor; 
+    carColorRef.current = carColor;
   }, [carColor]);
 
   const createOrUpdateDriverMarker = useCallback((lng: number, lat: number) => {
@@ -395,7 +395,7 @@ export default function OnRoute() {
         driver_id: activeTrip.driver_id ?? "",
         reason: cancelReason,
       });
-      const isSuccess = res?.success === true;
+      const isSuccess = res?.status  === true;
       if (isSuccess) {
         window.location.assign("/");
         return;

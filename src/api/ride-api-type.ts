@@ -57,3 +57,7 @@ export interface CancelRideI {
   driver_id: string;
   reason: string;
 }
+
+export interface CancelRideResI {
+  status: boolean;
+}

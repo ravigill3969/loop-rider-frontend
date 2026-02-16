@@ -5,6 +5,7 @@ import type {
   CreateCheckoutSessionRequest,
   CreateCheckOutSessionResponse,
   CancelRideI,
+  CancelRideResI,
 } from "./ride-api-type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -101,9 +102,7 @@ export function useGetActiveRideRequestWithID(tid: string) {
 }
 
 export function useCancelRide() {
-  const cancelRideReq = async (
-    data: CancelRideI,
-  ): Promise<CreateCheckOutSessionResponse> => {
+  const cancelRideReq = async (data: CancelRideI): Promise<CancelRideResI> => {
     const response = await fetch(`${backend_domain}/api/trip/cancel-ride`, {
       method: "POST",
       credentials: "include",

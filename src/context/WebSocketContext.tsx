@@ -56,7 +56,9 @@ export const WebSocketConextProvider = ({
   useEffect(() => {
     if (!user?.id) return;
 
-    const ws = new WebSocket(`ws://localhost:8081/ws?rider_id=${user.id}`);
+    const ws = new WebSocket(
+      `wss://loop-ride-drive.com/rider/ws?rider_id=${user.id}`,
+    );
 
     wsRef.current = ws;
 
