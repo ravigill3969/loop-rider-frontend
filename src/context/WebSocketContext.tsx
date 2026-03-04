@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useAuth } from "./AuthContext";
+import { backend_domain } from "@/global/env";
 
 interface WebSocketConextT {
   connected: boolean;
@@ -57,7 +58,7 @@ export const WebSocketConextProvider = ({
     if (!user?.id) return;
 
     const ws = new WebSocket(
-      `wss://loop-ride-drive.com/rider/ws?rider_id=${user.id}`,
+      `${backend_domain}/ws?rider_id=${user.id}`,
     );
 
     wsRef.current = ws;
@@ -92,7 +93,9 @@ export const WebSocketConextProvider = ({
 
         if (data.type === "DRIVER_LOCATION_UPDATE") {
           setDriverLocationUpdate(data);
+          setReceivedText(data.type)
         }
+
       } catch (err) {
         console.error("Invalid WS payload", err);
       }

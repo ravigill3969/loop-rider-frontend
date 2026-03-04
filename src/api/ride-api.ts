@@ -13,6 +13,7 @@ export function useCreateRideRequest() {
   const createRideRequest = async (
     data: CreateCheckoutSessionRequest,
   ): Promise<CreateCheckOutSessionResponse> => {
+    
     const response = await fetch(
       `${backend_domain}/api/payment/create-checkout-session`,
       {
@@ -28,7 +29,7 @@ export function useCreateRideRequest() {
     const res = await response.json();
 
     if (!response.ok) {
-      throw new Error("fuck");
+      throw new Error("Internal server error");
     }
 
     return res;

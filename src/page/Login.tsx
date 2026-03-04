@@ -30,7 +30,7 @@ export default function LoginUI() {
         },
       },
     );
-    console.log("Login submitted", { email, password, rememberMe });
+
   };
 
   return (

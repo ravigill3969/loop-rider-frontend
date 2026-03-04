@@ -9,7 +9,8 @@ export function useLogin() {
   }: {
     email: string;
     password: string;
-  }): Promise<string> => {
+    }): Promise<string> => {
+    console.log(backend_domain)
     const response = await fetch(`${backend_domain}/api/auth/login`, {
       method: "POST",
       credentials: "include",

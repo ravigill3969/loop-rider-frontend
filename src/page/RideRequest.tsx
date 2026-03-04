@@ -228,7 +228,7 @@ function RideRequest() {
         dropoff_location: tripInfo.dropoff_location,
         estimated_distance_km: tripInfo.distance,
         estimated_duration_min: tripInfo.eta,
-        estimated_price: Number(tripInfo.price.toFixed(2)),
+        estimated_price: Number(tripInfo.price),
         pickup_location: tripInfo.pickup_location,
         dropoff_coords: {
           lat: tripInfo.dropoff_coords_lat_lng[0],
